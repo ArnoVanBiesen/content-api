@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 class ContentApiServiceProvider extends ServiceProvider
 {
     protected $commands = [
-        'Famousinteractive\Translators\Commands\Initialize'
+        'Famousinteractive\ContentApi\Commands\Initialize'
     ];
 
     /**
