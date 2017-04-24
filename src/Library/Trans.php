@@ -37,32 +37,30 @@ class Trans
         $content = Content::where('key', $key)->first();
         $translation = ContentTranslation::where('content_id', $content->id)->where('lang', $lang)->first();
 
-        if(empty($content)) {
-            $content = Content::create(['key' => $key]);
-        }
+        $api = Api::getApi();
+
+        $translation = $api->getBy($key, $lang);
+
+
 
         if(empty($translation)) {
-            $translation = ContentTranslation::create([
-                'content_id'    => $content->id,
-                'lang'          => $lang,
-                'value'         => $default
-            ]);
+            $api->pushMissingTranslation($key, $lang, $default);
+            $translation = $default;
         }
 
         //Generate missing translation for each language
 
-        foreach(config('famousTranslator.lang') as $language) {
-            $translationCount = ContentTranslation::where('content_id', $content->id)->where('lang', $language)->count();
-            if($translationCount == 0) {
-                ContentTranslation::create([
-                    'content_id'    => $content->id,
-                    'lang'          => $language,
-                    'value'         => $default
-                ]);
+        if(config('famousContentApi.autoRegister')) {
+            foreach (config('famousContentApi.lang') as $language) {
+
+                $translationCount = $api->getBy($key, $language);
+                if (empty($translationCount)) {
+                    $api->pushMissingTranslation($key, $language, $default);
+                }
             }
         }
 
-        return $this->replaceParameters($translation->value, $params);
+        return $this->replaceParameters($translation, $params);
     }
 
     protected function getCurrentLang() {

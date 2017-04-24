@@ -27,5 +27,14 @@ class Api
         return self::$_instance;
     }
 
+    public function getBy($key, $language) {
+
+    }
+
+
+    public function pushMissingTranslation() {
+
+    }
+
 
 }
