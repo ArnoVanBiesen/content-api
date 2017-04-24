@@ -1,5 +1,5 @@
 {
-    "name": "famousinteractive/contentApi",
+    "name": "famousinteractive/content-api",
     "description": "Allow to get translations via an Api and specific helper",
     "type": "library",
     "license": "GPL-3.0+",
