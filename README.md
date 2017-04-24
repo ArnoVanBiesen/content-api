@@ -3,7 +3,7 @@ Set up a package to load translation from centralized api
 
 ## Basic Installation
 
-  - `composer require famousinteractive/composer require famousinteractive/content-api`
+  - `composer require famousinteractive/content-api`
   
   - Add `Famousinteractive\ContentApi\ContentApiServiceProvider::class` in serviceProvider in config/app.php
     
