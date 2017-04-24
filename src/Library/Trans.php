@@ -2,7 +2,6 @@
 
 namespace Famousinteractive\ContentApi\Library;
 
-
 use Famousinteractive\Translators\Models\Content;
 use Famousinteractive\Translators\Models\ContentTranslation;
 use Illuminate\Support\Facades\Cache;
@@ -10,8 +9,6 @@ use Illuminate\Support\Facades\Cache;
 class Trans
 {
     public static function get($key, $params = [], $lang=null, $default = '', $preferCache=true) {
-
-
         $instance = new self();
 
         if(is_null($lang)) {
@@ -40,8 +37,6 @@ class Trans
         $api = Api::getApi();
 
         $translation = $api->getBy($key, $lang);
-
-
 
         if(empty($translation)) {
             $api->pushMissingTranslation($key, $lang, $default);

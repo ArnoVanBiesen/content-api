@@ -3,5 +3,7 @@
     'key' => '',
     'lang'  => [],
     'useApi'    => false,
-    'autoRegister'  => false
+    'autoRegister'  => false,
+    'apiUrl'    => '',
+    'apiEndpoint'    => '',
 );

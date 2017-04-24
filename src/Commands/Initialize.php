@@ -51,12 +51,17 @@ class Initialize extends Command
         $apiKey   = $this->ask('Enter your Api key');
         $autoRegister = $this->confirm('Do you want to auto register new translation ? (You key need to have "readonly" unchecked) ');
 
+        $apiUrl = $this->ask('Enter the Api url :', 'http://famous-content-platform.production.famousgrey.com/api/content');
+        $apiEndpoint = $this->ask('Enter the Api endpoint :', 'api/content');
+
         $credentials = [
-            'clientId'    => $clientId,
-            'key'         => $apiKey,
-            'lang'        => $lang,
-            'useApi'       => true,
+            'clientId'      => $clientId,
+            'key'           => $apiKey,
+            'lang'          => $lang,
+            'useApi'        => true,
             'autoRegister'  => $autoRegister,
+            'apiUrl'        => $apiUrl,
+            'apiEndpoint'   => $apiEndpoint
         ];
 
         $fp = fopen(config_path('famousContentApi.php') , 'w');
