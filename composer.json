@@ -1,0 +1,20 @@
+{
+    "name": "famousinteractive/contentApi",
+    "description": "Allow to get translations via an Api and specific helper",
+    "type": "library",
+    "license": "GPL-3.0+",
+    "authors": [
+        {
+            "name": "Jérémy Dillenbourg",
+            "email": "jeremy.dillenbourg@famousgrey.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Famousinteractive\\ContentApi\\": "src/"
+        }
+    }
+}
