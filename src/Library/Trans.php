@@ -31,9 +31,6 @@ class Trans
 
     protected function getTranslation($key, $default, $params, $lang) {
 
-        $content = Content::where('key', $key)->first();
-        $translation = ContentTranslation::where('content_id', $content->id)->where('lang', $lang)->first();
-
         $api = Api::getApi();
 
         $translation = $api->getBy($key, $lang);

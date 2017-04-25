@@ -40,7 +40,8 @@ class Api
             $param = http_build_query([
                 'clientId'  => config('famousContentApi.clientId'),
                 'key'       => $key,
-                'lang'      => $language
+                'lang'      => $language,
+                'onlyValue' => true,
             ]);
 
             $this->request = $this->client->request('GET', config('famousContentApi.apiEndpoint').'?'.$param, [
@@ -54,7 +55,9 @@ class Api
             return false;
         }
 
-        return $this->request->getBody()->getContents();
+        $content = json_decode($this->request->getBody()->getContents(), true);
+
+        return  isset($content['data'][0]['value']) ? $content['data'][0]['value'] : '';
     }
 
 
@@ -77,7 +80,13 @@ class Api
             return false;
         }
 
-        return $this->request->getBody()->getContents();
+        $content = json_decode($this->request->getBody()->getContents(), true);
+
+        if(!isset($content['success']) || !$content['success'] ) {
+            Log::error('Error while pushing translation with message ' . $content['message']);
+            return false;
+        }
+        return true;
     }
 
 
