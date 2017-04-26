@@ -50,6 +50,7 @@ class Initialize extends Command
         $clientId = $this->ask('Enter your APi client Id');
         $apiKey   = $this->ask('Enter your Api key');
         $autoRegister = $this->confirm('Do you want to auto register new translation ? (You key need to have "readonly" unchecked) ');
+        $useCache = $this->confirm('Do you want to use the cache ? (Enter No for dev environment) ');
 
         $apiUrl = $this->ask('Enter the Api url :', 'http://famous-content-platform.production.famousgrey.com/');
         $apiEndpoint = $this->ask('Enter the Api endpoint :', 'api/content');
@@ -61,7 +62,8 @@ class Initialize extends Command
             'useApi'        => true,
             'autoRegister'  => $autoRegister,
             'apiUrl'        => $apiUrl,
-            'apiEndpoint'   => $apiEndpoint
+            'apiEndpoint'   => $apiEndpoint,
+            'useCache'      => $useCache,
         ];
 
         $fp = fopen(config_path('famousContentApi.php') , 'w');

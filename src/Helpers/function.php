@@ -7,11 +7,12 @@
  */
 
 if (! function_exists('fitrans')) {
-    function fitrans($key, $params = [], $lang = null, $default = '', $preferCache = true)
+    function fitrans($key, $params = [], $lang = null, $default = '')
     {
 
         if(config('famousContentApi.useApi')) {
-            return \Famousinteractive\ContentApi\Library\Trans::get($key, $params, $lang, $default, $preferCache);
+
+            return \Famousinteractive\ContentApi\Library\Trans::get($key, $params, $lang, $default, config('famousContentApi.useCache', true));
         } else {
             return trans($key, $params);
         }
