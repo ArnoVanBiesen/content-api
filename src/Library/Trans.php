@@ -2,8 +2,6 @@
 
 namespace Famousinteractive\ContentApi\Library;
 
-use Famousinteractive\Translators\Models\Content;
-use Famousinteractive\Translators\Models\ContentTranslation;
 use Illuminate\Support\Facades\Cache;
 
 class Trans

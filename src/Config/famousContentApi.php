@@ -6,4 +6,5 @@
     'autoRegister'  => false,
     'apiUrl'    => '',
     'apiEndpoint'    => '',
+    'apiDatasetEndpoint'    => '',
 );

@@ -89,5 +89,26 @@ class Api
         return true;
     }
 
+    public function getDataset($datasetName) {
+        $this->initCall();
+        try {
+            $param = http_build_query([
+                'clientId'  => config('famousContentApi.clientId'),
+            ]);
 
+            $this->request = $this->client->request('GET', config('famousContentApi.apiDatasetEndpoint').'/'.str_slug($datasetName).'?'.$param, [
+                'headers'   => [
+                    'apiKey'    => config('famousContentApi.key')
+                ]
+            ]);
+
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return false;
+        }
+
+        $content = json_decode($this->request->getBody()->getContents(), true);
+
+        return  isset($content['data'][0]['value']) ? $content['data'][0]['value'] : '';
+    }
 }

@@ -11,10 +11,20 @@ if (! function_exists('fitrans')) {
     {
 
         if(config('famousContentApi.useApi')) {
-
             return \Famousinteractive\ContentApi\Library\Trans::get($key, $params, $lang, $default, config('famousContentApi.useCache', true));
         } else {
             return trans($key, $params);
+        }
+    }
+}
+
+
+if (! function_exists('fitds')) {
+    function fitds($datasetName, $prefixLang = false) {
+        if(config('famousContentApi.useApi')) {
+            return \Famousinteractive\ContentApi\Library\Dataset::get($datasetName, $prefixLang, config('famousContentApi.useCache', true));
+        } else {
+            return '';
         }
     }
 }
