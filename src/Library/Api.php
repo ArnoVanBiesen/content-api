@@ -110,7 +110,7 @@ class Api
 
         $content = json_decode($this->request->getBody()->getContents(), true);
 
-        return  isset($content['data'][0]['value']) ? $content['data'][0]['value'] : '';
+        return  isset($content['data']) ? $content['data'] : '';
     }
 
     public function putDatasetRecord($datasetName, $data) {
@@ -122,9 +122,7 @@ class Api
 
         try {
             $this->request = $this->client->request('POST', config('famousContentApi.apiDatasetEndpoint').'/'.str_slug($datasetName), [
-                'form_params'  => [
-                    $formParams
-                ],
+                'form_params'  => $formParams,
                 'headers'   => [
                     'apiKey'    => config('famousContentApi.key')
                 ]

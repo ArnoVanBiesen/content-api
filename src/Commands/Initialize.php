@@ -54,7 +54,7 @@ class Initialize extends Command
 
         $apiUrl = $this->ask('Enter the Api url :', 'http://famous-content-platform.production.famousgrey.com/');
         $apiEndpoint = $this->ask('Enter the Api endpoint :', 'api/content');
-        $apiEndpointDataset = $this->ask('Enter the Api Dataset endpoint:', 'api/dataset/api/');
+        $apiEndpointDataset = $this->ask('Enter the Api Dataset endpoint:', 'api/content/dataset');
 
         $credentials = [
             'clientId'      => $clientId,

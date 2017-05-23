@@ -20,7 +20,7 @@ if (! function_exists('fitrans')) {
 
 
 if (! function_exists('fitds')) {
-    function fitds($datasetName, $prefixLang = false, $param=[], $useCache=true) {
+    function fitds($datasetName, $prefixLang = false, $param='all', $useCache=true) {
         if(config('famousContentApi.useApi')) {
             return \Famousinteractive\ContentApi\Library\Dataset::get($datasetName, $prefixLang, $param, $useCache);
         } else {

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Cache;
 class Dataset
 {
 
-    public static function get($datasetName, $prefixLang=false, $param="all", $preferCache=true) {
+    public static function get($datasetName, $prefixLang=false, $param='all', $preferCache=true) {
         $instance = new self();
         $api = Api::getApi();
 

@@ -18,7 +18,7 @@ class CacheController extends Controller
     public function clear(Request $request) {
 
         if($request->get('clientId') == config('famousContentApi.clientId')) {
-            Artisan::call('cache:clear');
+            \Artisan::call('cache:clear');
             echo 'Done';
         } else {
             echo '0';
