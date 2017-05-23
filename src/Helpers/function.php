@@ -20,11 +20,21 @@ if (! function_exists('fitrans')) {
 
 
 if (! function_exists('fitds')) {
-    function fitds($datasetName, $prefixLang = false) {
+    function fitds($datasetName, $prefixLang = false, $param=[], $useCache=true) {
         if(config('famousContentApi.useApi')) {
-            return \Famousinteractive\ContentApi\Library\Dataset::get($datasetName, $prefixLang, config('famousContentApi.useCache', true));
+            return \Famousinteractive\ContentApi\Library\Dataset::get($datasetName, $prefixLang, $param, $useCache);
         } else {
-            return '';
+            return ['dataset'   => $datasetName];
+        }
+    }
+}
+
+if (! function_exists('fitpushds')) {
+    function fitpushds($datasetName, $data=[], $prefixLang = false) {
+        if(config('famousContentApi.useApi')) {
+            return \Famousinteractive\ContentApi\Library\Dataset::put($datasetName, $data, $prefixLang);
+        } else {
+            return true;
         }
     }
 }
