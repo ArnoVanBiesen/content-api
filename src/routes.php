@@ -7,6 +7,4 @@
  */
 
 
-Route::get('/fit-content-api-clear-cache', function() {
-    Artisan::call('cache:clear');
-});
+Route::get('/fit-content-api-clear-cache', 'Famousinteractive\ContentApi\Controllers\CacheController@clear');

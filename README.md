@@ -39,4 +39,6 @@ Set up a package to load translation from centralized api
             ]`
      * The return is either true or an array `['success' => false, 'message' => 'error_description']` . The fields are validated by the rules set in the platform. If the validation fails, you'll receive an error response.
             
-            
+## Extra
+  
+  - You can call `/fit-content-api-clear-cache?clientId=xxxxxx` in order to clear the cache of the website          

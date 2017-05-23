@@ -32,6 +32,8 @@ class ContentApiServiceProvider extends ServiceProvider
         include __DIR__.'/Helpers/function.php';
         include __DIR__.'/routes.php';
 
+        $this->app->make('Famousinteractive\ContentApi\Controllers\CacheController');
+
         $this->commands($this->commands);
     }
 }
