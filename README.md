@@ -22,7 +22,7 @@ Set up a package to load translation from centralized api
   - To get the data of a dataset, use the function `fitds($datasetName, $prefixLang = false, $param=[], $useCache=true)`
      * `$datasetName` is the unique name of the dataset
      * `$prefixLang`  Boolean allowing you to use a different dataset for each language.
-     * `$param`   Array [] with the data to return. Values :
+     * `$param`   string with the data to return. Values :
         * "fields" Just the list and the type of the fields. 
         * "datas" All entries in the dataset with information on the fields.
         * "formatted" An array with the association with Field => value and no more data.
