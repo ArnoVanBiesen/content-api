@@ -7,4 +7,5 @@
     'apiUrl'    => '',
     'apiEndpoint'    => '',
     'apiDatasetEndpoint'    => '',
+    'cacheDuration' => ''
 );

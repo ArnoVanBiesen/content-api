@@ -56,6 +56,8 @@ class Initialize extends Command
         $apiEndpoint = $this->ask('Enter the Api endpoint :', 'api/content');
         $apiEndpointDataset = $this->ask('Enter the Api Dataset endpoint:', 'api/content/dataset');
 
+        $cacheDuraction = $this->ask('Enter the duration of the cache (in munite)', 120);
+
         $credentials = [
             'clientId'      => $clientId,
             'key'           => $apiKey,
@@ -66,6 +68,7 @@ class Initialize extends Command
             'apiEndpoint'   => $apiEndpoint,
             'apiDatasetEndpoint'    => $apiEndpointDataset,
             'useCache'      => $useCache,
+            'cacheDuration' => $cacheDuraction
         ];
 
         $fp = fopen(config_path('famousContentApi.php') , 'w');
