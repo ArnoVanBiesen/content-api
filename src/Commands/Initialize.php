@@ -42,7 +42,6 @@ class Initialize extends Command
         $this->info('Famous Content Api initialize ...');
         $this->info('We\'ll ask you a few question to initialize this package. You can edit these data in the famousContentApi.php file in your config directory');
 
-
         //Enable language
         $lang = $this->ask('Enter the language to activate. Use a coma to separate them', 'nl,fr');
         $lang = explode(',', $lang);

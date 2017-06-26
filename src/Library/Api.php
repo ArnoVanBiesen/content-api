@@ -5,10 +5,13 @@ namespace Famousinteractive\ContentApi\Library;
 use GuzzleHttp\Client;
 use Log;
 
+/**
+ * Class Api
+ * @package Famousinteractive\ContentApi\Library
+ */
 class Api
 {
     protected static $_instance = null;
-
     protected $client = null;
     protected $request = null;
 
@@ -16,7 +19,7 @@ class Api
     private function __clone() {}
 
     /**
-     * @return Api
+     * @return Api|null
      */
     public static function getApi() {
 
@@ -31,10 +34,15 @@ class Api
         $this->client = new Client([
             'base_uri'  => config('famousContentApi.apiUrl'),
         ]);
-
     }
 
+    /**
+     * @param $key
+     * @param $language
+     * @return bool|string
+     */
     public function getBy($key, $language) {
+
         $this->initCall();
         try {
             $param = http_build_query([
@@ -60,8 +68,14 @@ class Api
         return  isset($content['data'][0]['value']) ? $content['data'][0]['value'] : '';
     }
 
-
+    /**
+     * @param $key
+     * @param $language
+     * @param $default
+     * @return bool
+     */
     public function pushMissingTranslation($key, $language, $default) {
+
         $this->initCall();
         try {
             $this->request = $this->client->request('POST', config('famousContentApi.apiEndpoint'), [
@@ -89,7 +103,13 @@ class Api
         return true;
     }
 
+    /**
+     * @param $datasetName
+     * @param string $param
+     * @return bool|string
+     */
     public function getDataset($datasetName, $param='all') {
+
         $this->initCall();
         try {
             $param = http_build_query([
@@ -113,9 +133,14 @@ class Api
         return  isset($content['data']) ? $content['data'] : '';
     }
 
+    /**
+     * @param $datasetName
+     * @param $data
+     * @return bool
+     */
     public function putDatasetRecord($datasetName, $data) {
-        $this->initCall();
 
+        $this->initCall();
         $formParams = [];
         $formParams['fields'] = $data;
         $formParams['clientId'] = config('famousContentApi.clientId');

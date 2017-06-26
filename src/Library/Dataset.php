@@ -1,18 +1,23 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jeremydillenbourg
- * Date: 22/05/2017
- * Time: 16:27
- */
 
 namespace Famousinteractive\ContentApi\Library;
 use Illuminate\Support\Facades\Cache;
 
+/**
+ * Class Dataset
+ * @package Famousinteractive\ContentApi\Library
+ */
 class Dataset
 {
-
+    /**
+     * @param $datasetName
+     * @param bool $prefixLang
+     * @param string $param
+     * @param bool $preferCache
+     * @return bool|string
+     */
     public static function get($datasetName, $prefixLang=false, $param='all', $preferCache=true) {
+
         $instance = new self();
         $api = Api::getApi();
 
@@ -38,6 +43,12 @@ class Dataset
         return $value;
     }
 
+    /**
+     * @param $datasetName
+     * @param array $data
+     * @param bool $prefixLang
+     * @return bool
+     */
     public static function put($datasetName, $data = array(), $prefixLang=false) {
 
         $instance = new self();
@@ -50,6 +61,9 @@ class Dataset
         return $api->putDatasetRecord($datasetName, $data);
     }
 
+    /**
+     * @return mixed
+     */
     protected function getCurrentLang() {
         return \Config::get('app.locale');
     }
