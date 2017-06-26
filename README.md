@@ -41,4 +41,5 @@ Set up a package to load translation from centralized api
             
 ## Extra
   
-  - You can call `/fit-content-api-clear-cache?clientId=xxxxxx` in order to clear the cache of the website          
+  - You can call `/fit-content-api-clear-cache?clientId=xxxxxx` in order to clear the cache of the website     
+  - You can run  `php artisan famousContentApi:collect ` to collect all the fitrans() reference and send them to the platform.    
