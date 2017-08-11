@@ -51,7 +51,7 @@ class Initialize extends Command
         $autoRegister = $this->confirm('Do you want to auto register new translation ? (You key need to have "readonly" unchecked) ');
         $useCache = $this->confirm('Do you want to use the cache ? (Enter No for dev environment) ');
 
-        $apiUrl = $this->ask('Enter the Api url :', 'http://famous-content-platform.production.famousgrey.com/');
+        $apiUrl = $this->ask('Enter the Api url :', 'https://content.famousgrey.com/');
         $apiEndpoint = $this->ask('Enter the Api endpoint :', 'api/content');
         $apiEndpointDataset = $this->ask('Enter the Api Dataset endpoint:', 'api/content/dataset');
 
