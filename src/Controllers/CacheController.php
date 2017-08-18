@@ -24,7 +24,6 @@ class CacheController extends Controller
             foreach($allKey as $value) {
 
                 foreach($value['translations'] as $trans) {
-                    var_dump('cache-fitrans-' . $value['key'] . '-' . $trans['lang']);
                     \Cache::remember('cache-fitrans-' . $value['key'] . '-' . $trans['lang'], config('famousContentApi.cacheDuration'), function () use ($trans) {
                         return $trans['value'];
                     });
