@@ -43,3 +43,7 @@ Set up a package to load translation from centralized api
   
   - You can call `/fit-content-api-clear-cache?clientId=xxxxxx` in order to clear the cache of the website     
   - You can run  `php artisan famousContentApi:collect ` to collect all the fitrans() reference and send them to the platform.    
+  - You can force to render all the translation key by adding paremeters to the url of your website 
+    * `?fitrans=display_keys&exclusion=routes`
+    * fitrans=display_keys render all the keys
+    * exlusion exlude some pattern. Here all keys starting by `routes.`. It's usefull if you use fitrans() in the route file.
