@@ -2,6 +2,7 @@
 namespace Famousinteractive\ContentApi\Controllers;
 
 use App\Http\Controllers\Controller;
+use Famousinteractive\ContentApi\Library\Api;
 use Illuminate\Http\Request;
 
 /**
@@ -12,8 +13,24 @@ class CacheController extends Controller
 {
     public function clear(Request $request) {
 
-        if($request->get('clientId') == config('famousContentApi.clientId')) {
+        if(true) {
             \Artisan::call('cache:clear');
+
+            //We reload the translation automatically
+
+            $api = Api::getApi();
+            $allKey = $api->getAll();
+
+            foreach($allKey as $value) {
+
+                foreach($value['translations'] as $trans) {
+                    var_dump('cache-fitrans-' . $value['key'] . '-' . $trans['lang']);
+                    \Cache::remember('cache-fitrans-' . $value['key'] . '-' . $trans['lang'], config('famousContentApi.cacheDuration'), function () use ($trans) {
+                        return $trans['value'];
+                    });
+                }
+            }
+
             echo 'Done';
         } else {
             echo '0';

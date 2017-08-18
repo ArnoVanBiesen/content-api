@@ -69,6 +69,34 @@ class Api
     }
 
     /**
+     * @return bool|array
+     */
+    public function getAll() {
+        $this->initCall();
+
+        try {
+            $param = http_build_query([
+                'clientId'  => config('famousContentApi.clientId'),
+                'method' => 'get',
+            ]);
+
+            $this->request = $this->client->request('GET', config('famousContentApi.apiEndpoint').'?'.$param, [
+                'headers'   => [
+                    'apiKey'    => config('famousContentApi.key')
+                ]
+            ]);
+
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return false;
+        }
+
+        $content = json_decode($this->request->getBody()->getContents(), true);
+
+        return  isset($content['data']) ? $content['data'] : [];
+    }
+
+    /**
      * @param $key
      * @param $language
      * @param $default

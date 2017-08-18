@@ -28,16 +28,14 @@ class Trans
 
         if($preferCache) {
 
-            $paramsString = md5(json_encode($params));
-
-            $value = Cache::remember('cache-fitrans-' . $key . '-' . $lang.'-params'.$paramsString, config('famousContentApi.cacheDuration'), function () use ($instance, $key, $default, $params, $lang) {
-                return $instance->getTranslation($key, $default, $params, $lang);
+            $value = Cache::remember('cache-fitrans-' . $key . '-' . $lang, config('famousContentApi.cacheDuration'), function () use ($instance, $key, $default, $lang) {
+                return $instance->getTranslation($key, $default, $lang);
             });
         } else {
-            $value = $instance->getTranslation($key, $default, $params, $lang);
+            $value = $instance->getTranslation($key, $default, $lang);
         }
 
-        return $value;
+        return $instance->replaceParameters($value, $params);
     }
 
     /**
@@ -47,7 +45,7 @@ class Trans
      * @param $lang
      * @return mixed
      */
-    protected function getTranslation($key, $default, $params, $lang) {
+    protected function getTranslation($key, $default, $lang) {
 
         $api = Api::getApi();
         $translation = $api->getBy($key, $lang);
@@ -67,8 +65,7 @@ class Trans
                 }
             }
         }
-
-        return $this->replaceParameters($translation, $params);
+        return $translation;
     }
 
     /**
