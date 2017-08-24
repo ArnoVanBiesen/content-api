@@ -45,7 +45,7 @@ class Collector
 
             if(($fileContent = file_get_contents($file)) !== FALSE) {
 
-                preg_match_all('#fitrans\((.*)\)#', $fileContent, $matches, PREG_SET_ORDER);
+                preg_match_all('#fitrans\((.*?)\)#', $fileContent, $matches, PREG_SET_ORDER);
 
                 foreach($matches as $match) {
                     $this->collects[$file][] = [
