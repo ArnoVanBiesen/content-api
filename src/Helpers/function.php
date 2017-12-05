@@ -13,7 +13,7 @@ if (! function_exists('fitrans')) {
             $default
         );
 
-        if( ! $specialDisplay) {
+        if( $specialDisplay !== FALSE) {
             return $specialDisplay;
         }
 
