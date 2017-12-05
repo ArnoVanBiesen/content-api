@@ -47,7 +47,7 @@ class Trans
      * @param null $default
      * @return bool|string
      */
-    public static function getSpecialDisplay($type, $exclusion, $key, $params = [], $lang = null, $default = null) {
+    public static function getSpecialDisplay($type, $exclusion, $key, $lang = null, $default = null) {
         $explodedKey = explode('.', $key);
 
         if( $type == 'display_keys' &&
@@ -62,12 +62,12 @@ class Trans
 
         if( $type == 'edit_keys' &&
             (
-                empty($fitransPrefixExlusion)
+                empty($exclusion)
                 ||
                 ( isset($explodedKey[0]) && !empty($exclusion) && $explodedKey[0] != $exclusion )
             )
         ) {
-            return '<span class="famous-content-patform-edit-in-page" data-key="'.$key.'">' . self::get($key, $params, $lang, $default, false) . '</span>';
+            return '{{fit data-key='.$key.'}}' . self::get($key, [], $lang, $default, false) . '{{/}}';
         }
 
         return false;

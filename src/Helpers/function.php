@@ -8,7 +8,6 @@ if (! function_exists('fitrans')) {
             \Illuminate\Http\Request::capture()->get('fitrans'),
             \Illuminate\Http\Request::capture()->get('exclusion'),
             $key,
-            $params,
             $lang,
             $default
         );
