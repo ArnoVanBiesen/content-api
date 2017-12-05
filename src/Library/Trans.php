@@ -39,6 +39,41 @@ class Trans
     }
 
     /**
+     * @param $type
+     * @param $exclusion
+     * @param $key
+     * @param array $params
+     * @param null $lang
+     * @param null $default
+     * @return bool|string
+     */
+    public static function getSpecialDisplay($type, $exclusion, $key, $params = [], $lang = null, $default = null) {
+        $explodedKey = explode('.', $key);
+
+        if( $type == 'display_keys' &&
+            (
+                empty($exclusion)
+                ||
+                ( isset($explodedKey[0]) && !empty($exclusion) && $explodedKey[0] != $exclusion )
+            )
+        ) {
+            return $key;
+        }
+
+        if( $type == 'edit_keys' &&
+            (
+                empty($fitransPrefixExlusion)
+                ||
+                ( isset($explodedKey[0]) && !empty($exclusion) && $explodedKey[0] != $exclusion )
+            )
+        ) {
+            return '<span class="famous-content-patform-edit-in-page" data-key="'.$key.'">' . self::get($key, $params, $lang, $default, false) . '</span>';
+        }
+
+        return false;
+    }
+
+    /**
      * @param $key
      * @param $default
      * @param $params

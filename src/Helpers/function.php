@@ -3,24 +3,18 @@
 if (! function_exists('fitrans')) {
     function fitrans($key, $params = [], $lang = null, $default = '')
     {
-        try {
-            $fitransParameters = \Illuminate\Http\Request::capture()->get('fitrans');
-            $fitransPrefixExlusion = \Illuminate\Http\Request::capture()->get('exclusion');
 
-            $explodedKey = explode('.', $key);
+        $specialDisplay = \Famousinteractive\ContentApi\Library\Trans::getSpecialDisplay(
+            \Illuminate\Http\Request::capture()->get('fitrans'),
+            \Illuminate\Http\Request::capture()->get('exclusion'),
+            $key,
+            $params,
+            $lang,
+            $default
+        );
 
-            if( $fitransParameters == 'display_keys' &&
-                (
-                    empty($fitransPrefixExlusion)
-                    ||
-                    ( isset($explodedKey[0]) && !empty($fitransPrefixExlusion) && $explodedKey[0] != $fitransPrefixExlusion )
-                )
-            ) {
-                return $key;
-            }
-
-        } catch (\Exception $e) {
-            //
+        if( ! $specialDisplay) {
+            return $specialDisplay;
         }
 
         if(config('famousContentApi.useApi')) {
